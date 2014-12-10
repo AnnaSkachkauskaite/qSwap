@@ -24,8 +24,11 @@ public:
     QMediaPlayer *player;
 
 private slots:
+    ///Show game field screen
     void playButtonClicked();
+    ///Show options screen
     void optionsButtonClicked();
+    ///Show rules screen
     void rulesButtonClicked();
 
 public slots:

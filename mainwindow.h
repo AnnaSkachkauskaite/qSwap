@@ -33,6 +33,7 @@ private slots:
     void createButtons();
     ///Slot for processing pushed button
     void buttonClick();
+    ///Back to menu
     void menuButtonClicked();
 
 signals:
@@ -45,7 +46,10 @@ private:
     int sizeG;
     QPushButton *firstPiece;
     QPair <int, int> firstPlace;
+    ///Game logic
     Game game;
+    ///Show changes
     void RefreshButtons();
+    ///For color buttons
     const char* colorByType(int type);
 };
