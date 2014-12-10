@@ -15,7 +15,10 @@
          <item>gnustl_shared</item>
 <item>Qt5Core</item>
 <item>Qt5Gui</item>
+<item>Qt5Network</item>
+<item>Qt5Multimedia</item>
 <item>Qt5Widgets</item>
+<item>Qt5Xml</item>
 
      </array>
 
@@ -37,6 +40,10 @@
 <item>libplugins_imageformats_libqtga.so:plugins/imageformats/libqtga.so</item>
 <item>libplugins_imageformats_libqtiff.so:plugins/imageformats/libqtiff.so</item>
 <item>libplugins_imageformats_libqwbmp.so:plugins/imageformats/libqwbmp.so</item>
+<item>libplugins_bearer_libqgenericbearer.so:plugins/bearer/libqgenericbearer.so</item>
+<item>libplugins_mediaservice_libqtmedia_android.so:plugins/mediaservice/libqtmedia_android.so</item>
+<item>libplugins_audio_libqtaudio_opensles.so:plugins/audio/libqtaudio_opensles.so</item>
+<item>libplugins_playlistformats_libqtmultimedia_m3u.so:plugins/playlistformats/libqtmultimedia_m3u.so</item>
 <item>libplugins_accessible_libqtaccessiblewidgets.so:plugins/accessible/libqtaccessiblewidgets.so</item>
 
     </array>

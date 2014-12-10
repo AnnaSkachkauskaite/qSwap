@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <QTime>
 
@@ -18,6 +17,8 @@ public:
     bool isMovePossible();
     void swapPieces(QPair<int, int> first, QPair<int, int> second);
     void checkForEnd();
+    QString scoreAtTheMoment();
+    void getNullScore();
 
 private:
     void endGameNoMatches();
@@ -27,9 +28,9 @@ private:
     bool matchType(int col, int row, int type);
     bool matchPattern(int col, int row, QPair<int, int> needToMatch, QPair<int, int> possibilities[], int arraySize);
     QList<QPair<int, int>> getMatchHoriz(int row, int col);
-    QList<QPair<int, int>> getMatchVert (int row, int col);
+    QList<QPair<int, int>> getMatchVert (int col, int row);
     int score;
-    int size;
+    int sizeG;
     int matrix[maxSize][maxSize];
     QList<QList<QPair<int, int>>> matches;
     QPair<int,int> horizTwoInRow[twoInRowSize] = {qMakePair(-2,0), qMakePair(-1,-1), qMakePair(-1,1), qMakePair(2,-1), qMakePair(2,1), qMakePair(3,0)};
@@ -38,4 +39,4 @@ private:
     QPair<int,int> verticTwoThroughOne[twoThroughOneSize] = {qMakePair(-1,1), qMakePair(1,1)};
 };
 
-#endif // GAME_H
+

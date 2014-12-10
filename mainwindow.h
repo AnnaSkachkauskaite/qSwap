@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPushButton>
@@ -9,6 +8,7 @@
 #include <string.h>
 
 #include "game.h"
+//#include "menu.h"
 
 using namespace std;
 
@@ -26,23 +26,26 @@ public:
     ~MainWindow();
     void makeSwap(QPushButton *, QPushButton *);
     void swapPiecesAndButtons(QPushButton *first, QPushButton *second);
+    void paintEvent(QPaintEvent *);
 
 private slots:
     ///Slot for generating buttons
     void createButtons();
     ///Slot for processing pushed button
     void buttonClick();
+    void menuButtonClicked();
+
+signals:
+    void endGame();
 
 private:
     void appropriateGame();
     Ui::MainWindow *ui;
     QMap <QPushButton *, QPair<int, int> > buttonsPosition;
-    int size;
+    int sizeG;
     QPushButton *firstPiece;
     QPair <int, int> firstPlace;
     Game game;
     void RefreshButtons();
     const char* colorByType(int type);
 };
-
-#endif // MAINWINDOW_H

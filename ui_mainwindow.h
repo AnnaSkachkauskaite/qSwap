@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.4.0
+** Created by: Qt User Interface Compiler version 5.3.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -36,7 +36,7 @@ public:
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
+    QPushButton *BackButton;
     QVBoxLayout *verticalLayout_3;
     QLabel *label;
     QLineEdit *lineEdit;
@@ -67,10 +67,11 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        BackButton = new QPushButton(centralWidget);
+        BackButton->setObjectName(QStringLiteral("BackButton"));
+        BackButton->setStyleSheet(QStringLiteral(""));
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(BackButton);
 
 
         horizontalLayout->addLayout(verticalLayout);
@@ -98,7 +99,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 21));
+        menuBar->setGeometry(QRect(0, 0, 400, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -115,7 +116,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Play", 0));
+        BackButton->setText(QApplication::translate("MainWindow", "Back", 0));
         label->setText(QApplication::translate("MainWindow", "Score", 0));
     } // retranslateUi
 

@@ -1,12 +1,12 @@
 #include "game.h"
 
 Game::Game() :
-    size(8)
+    sizeG(8)
 {
     QTime midnight(0,0,0);
     qsrand(midnight.secsTo(QTime::currentTime()));
-    for (int i = 0; i < size; ++i)
-        for (int j = 0; j < size; ++j)
+    for (int i = 0; i < sizeG; ++i)
+        for (int j = 0; j < sizeG; ++j)
             matrix[i][j] = qrand() % 6;
 }
 
@@ -18,9 +18,9 @@ int Game::getPiece(int i, int j)
 bool Game::lookForMatches()
 {
     //looking for horizntal i - row, j - col
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < sizeG; i++)
     {
-        for (int j = 0; j < size - 2; j++)
+        for (int j = 0; j < sizeG - 2; j++)
         {
             QList<QPair<int,int>> temp = getMatchHoriz(i, j);
             if (temp.size() > 2)
@@ -32,9 +32,9 @@ bool Game::lookForMatches()
     }
 
     //looking for vertical i - col, j - row
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < sizeG; i++)
     {
-        for (int j = 0; j < size - 2; j++)
+        for (int j = 0; j < sizeG - 2; j++)
         {
             QList<QPair<int,int>> temp = getMatchVert(i, j);
             if (temp.size() > 2)
@@ -74,9 +74,9 @@ void Game::findAndRemoveMatches()
 
 bool Game::isMovePossible()
 {
-    for (int col = 0; col < size; col++)
+    for (int col = 0; col < sizeG; col++)
     {
-        for (int row = 0; row < size; row++)
+        for (int row = 0; row < sizeG; row++)
         {
             if (matchPattern(col, row, qMakePair(1,0), horizTwoInRow, twoInRowSize))
                 return true;
@@ -108,6 +108,16 @@ void Game::checkForEnd()
             endGameNoMatches();
         }
     }
+}
+
+QString Game::scoreAtTheMoment()
+{
+    return QString::number(score);
+}
+
+void Game::getNullScore()
+{
+    score = 0;
 }
 
 void Game::endGameNoMatches()
@@ -142,9 +152,9 @@ void Game::addPiece(int col, int row)
 
 void Game::addNewPieces()
 {
-    for (int col = 0; col < size; col++)
+    for (int col = 0; col < sizeG; col++)
     {
-        for (int row = 0; row < size; row++)
+        for (int row = 0; row < sizeG; row++)
         {
             if (matrix[col][row] == -1)
             {
@@ -156,7 +166,7 @@ void Game::addNewPieces()
 
 bool Game::matchType(int col, int row, int type)
 {
-    if((col < 0) || (col > size - 1) || (row < 0) || (row > size - 1))
+    if((col < 0) || (col > sizeG - 1) || (row < 0) || (row > sizeG - 1))
         return false;
     else
         return matrix[col][row] == type;
@@ -180,7 +190,7 @@ QList<QPair<int, int>> Game::getMatchHoriz(int row, int col)
 {
     QList<QPair<int,int>> temp;
     temp.append(qMakePair(col,row));
-    for (int i = 1; i + col < size; i++)
+    for (int i = 1; i + col < sizeG; i++)
     {
         if(matrix[col][row] == matrix[i + col][row])
         {
@@ -194,11 +204,11 @@ QList<QPair<int, int>> Game::getMatchHoriz(int row, int col)
     return temp;
 }
 
-QList<QPair<int, int> > Game::getMatchVert(int row, int col)
+QList<QPair<int, int> > Game::getMatchVert(int col, int row)
 {
     QList<QPair<int,int>> temp;
     temp.append(qMakePair(col, row));
-    for (int i = 1; i + row < size; i++)
+    for (int i = 1; i + row < sizeG; i++)
     {
         if(matrix[col][row] == matrix[col][row + i])
         {

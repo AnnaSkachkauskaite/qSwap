@@ -23,4 +23,5 @@ C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\b
 C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\bin\classes\org\qtproject\qt5\android\bindings\QtApplication$InvokeResult.class \
 C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\bin\classes\org\qtproject\qt5\android\bindings\QtApplication.class \
 C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\bin\dexedLibs\QtAndroid-bundled-efd61b03eae35dfb1ca21d96767d9379.jar \
+C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\bin\dexedLibs\QtMultimedia-bundled-7569aa7014b18a607eb7f92b0e506982.jar \
 C:\Qt\Qt5.2.1\Tools\QtCreator\bin\TwoDots\projectForComp\project\android-build\bin\dexedLibs\QtAndroidAccessibility-bundled-e556a5913b7c65dbda7d750bde3116fb.jar \

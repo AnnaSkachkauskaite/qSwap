@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,9 +17,23 @@ CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    game.cpp
+    game.cpp \
+    optionsmenu.cpp \
+    mainmenu.cpp \
+    rules.cpp \
+    database.cpp
 
 HEADERS  += mainwindow.h \
-    game.h
+    game.h \
+    optionsmenu.h \
+    mainmenu.h \
+    rules.h \
+    database.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    optionsmenu.ui \
+    mainmenu.ui \
+    rules.ui
+
+RESOURCES += \
+    swag.qrc

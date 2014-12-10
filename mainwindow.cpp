@@ -1,16 +1,22 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <cmath>
+#include <QPainter>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    size(8),
+    sizeG(8),
     game()
 
 {
     ui->setupUi(this);
     firstPiece = nullptr;
+    ui->lineEdit->setText("0");
+    game.getNullScore();
+    //ui->centralWidget->setStyleSheet("background-color:rgb(0,0,0);");
+    ui->BackButton->setStyleSheet("background-color:white;");
+    connect(ui->BackButton, &QPushButton::clicked, this, &MainWindow::menuButtonClicked);
     createButtons();
 }
 
@@ -21,17 +27,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::createButtons()
 {
-    for (int i = 0; i < size; ++i)
-        for (int j = 0; j < size; ++j)
+    for (int i = 0; i < sizeG; ++i)
+        for (int j = 0; j < sizeG; ++j)
         {
             QPushButton *button = new QPushButton;
             button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             button->setText(" ");
             ui->gridLayout->addWidget(button, i, j);
-            ui->centralWidget->setStyleSheet("background-color:rgb(0,0,0);");
             buttonsPosition[button] = qMakePair(i, j);
             ui->gridLayout->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i, j)));
             //button->setText(QString("%1").arg(game.getPiece(i, j)));
+            button->setText("$");
             connect(button, &QPushButton::clicked, this, &MainWindow::buttonClick);
         }
     bool temp = game.lookForMatches();
@@ -40,6 +46,7 @@ void MainWindow::createButtons()
         RefreshButtons();
         temp = game.lookForMatches();
     }
+    ui->lineEdit->setText(game.scoreAtTheMoment());
 }
 void MainWindow::buttonClick()
 {
@@ -86,6 +93,14 @@ void MainWindow::buttonClick()
 
 }
 
+void MainWindow::menuButtonClicked()
+{
+    ui->lineEdit->setText("0");
+    game.getNullScore();
+    close();
+    emit endGame();
+}
+
 void MainWindow::appropriateGame()
 {
 
@@ -106,6 +121,7 @@ void MainWindow::makeSwap(QPushButton *first, QPushButton *second)
             game.findAndRemoveMatches();
             RefreshButtons();
             temp = game.lookForMatches();
+            ui->lineEdit->setText(game.scoreAtTheMoment());
         }
     }
 }
@@ -121,9 +137,9 @@ void MainWindow::swapPiecesAndButtons(QPushButton *first, QPushButton *second)
 
 void MainWindow::RefreshButtons()
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < sizeG; i++)
     {
-        for (int j = 0; j < size; j++)
+        for (int j = 0; j < sizeG; j++)
         {
             ui->gridLayout->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i,j)));
         }
@@ -155,4 +171,11 @@ const char* MainWindow::colorByType(int type)
         return "background-color:rgb(0,0,0);";
         break;
     }
+}
+
+void MainWindow::paintEvent(QPaintEvent *)
+{
+    QImage fontImage(":/new/prefix1/Images/dirtymoney.jpg");
+    QPainter painter(this);
+    painter.drawImage(0, 0, fontImage.scaled(this->size()));
 }

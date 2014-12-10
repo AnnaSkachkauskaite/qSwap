@@ -1,12 +1,14 @@
 #include "mainwindow.h"
 #include "game.h"
 #include <QApplication>
-#include "game.h"
+#include "mainmenu.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    /*MainWindow w;
+    w.show();*/
+    MainMenu w;
     w.show();
     Game game;
     for (int i = 0; i < 8; ++i)
