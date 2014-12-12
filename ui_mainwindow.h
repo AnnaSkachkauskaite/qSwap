@@ -38,6 +38,8 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *BackButton;
     QVBoxLayout *verticalLayout_3;
+    QLabel *BestScore;
+    QLineEdit *lineEdit_2;
     QLabel *label;
     QLineEdit *lineEdit;
     QMenuBar *menuBar;
@@ -79,14 +81,28 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        BestScore = new QLabel(centralWidget);
+        BestScore->setObjectName(QStringLiteral("BestScore"));
+        BestScore->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+
+        verticalLayout_3->addWidget(BestScore);
+
+        lineEdit_2 = new QLineEdit(centralWidget);
+        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setReadOnly(false);
+
+        verticalLayout_3->addWidget(lineEdit_2);
+
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
+        label->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         verticalLayout_3->addWidget(label);
 
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setEnabled(false);
+        lineEdit->setEnabled(true);
+        lineEdit->setReadOnly(true);
 
         verticalLayout_3->addWidget(lineEdit);
 
@@ -117,6 +133,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         BackButton->setText(QApplication::translate("MainWindow", "Back", 0));
+        BestScore->setText(QApplication::translate("MainWindow", "Best Result", 0));
         label->setText(QApplication::translate("MainWindow", "Score", 0));
     } // retranslateUi
 

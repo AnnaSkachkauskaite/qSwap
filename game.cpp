@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game() :
-    sizeG(8)
+    sizeG(6)
 {
     QTime midnight(0,0,0);
     qsrand(midnight.secsTo(QTime::currentTime()));
@@ -69,7 +69,7 @@ void Game::findAndRemoveMatches()
         matches[i].clear();
     }
     matches.clear();
-    checkForEnd();
+    addNewPieces();
 }
 
 bool Game::isMovePossible()
@@ -98,17 +98,6 @@ void Game::swapPieces(QPair<int, int> first, QPair<int, int> second)
     matrix[second.first][second.second] = temp;
 }
 
-void Game::checkForEnd()
-{
-    addNewPieces();
-    if(matches.length() == 0)
-    {
-        if (!isMovePossible())
-        {
-            endGameNoMatches();
-        }
-    }
-}
 
 QString Game::scoreAtTheMoment()
 {
@@ -120,10 +109,6 @@ void Game::getNullScore()
     score = 0;
 }
 
-void Game::endGameNoMatches()
-{
-
-}
 
 void Game::dropPieces(int col, int row)
 {
