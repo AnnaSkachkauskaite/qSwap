@@ -1,5 +1,4 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#pragma once
 
 #include <QString>
 #include <QtXml>
@@ -14,6 +13,7 @@ class DataBase
 public:
 
     DataBase();
+    ~DataBase();
     ///Make database from QMap
     void makeDb(QMap<QString, QString> *scores);
     //QString getResult(QString name);
@@ -26,4 +26,4 @@ private:
 
 };
 
-#endif // DATABASE_H
+

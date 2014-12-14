@@ -1,13 +1,14 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#pragma once
 
 #include <QMainWindow>
 #include "mainwindow.h"
 #include "optionsmenu.h"
-#include <QtMultimedia/QMediaPlayer>
+//#include <QtMultimedia/QMediaPlayer>
 #include <QDesktopWidget>
 #include "rules.h"
 #include "info.h"
+#include "levelmenu.h"
+
 
 namespace Ui {
 class MainMenu;
@@ -21,7 +22,7 @@ public:
     explicit MainMenu(QWidget *parent = 0);
     ~MainMenu();
     void paintEvent(QPaintEvent *);
-    void playFontMusic();
+    //void playFontMusic();
     QMediaPlayer *player;
 
 private slots:
@@ -38,10 +39,11 @@ public slots:
 
 private:
     Ui::MainMenu *ui;
-    MainWindow *gameField;
+   // MainWindow *gameField;
     OptionsMenu *optionsWindow;
     Rules *rulesField;
     Info *infoField;
+    levelMenu *levelMenuEx;
 };
 
-#endif // MAINMENU_H
+

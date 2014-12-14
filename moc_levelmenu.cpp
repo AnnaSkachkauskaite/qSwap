@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'mainwindow.h'
+** Meta object code from reading C++ file 'levelmenu.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "mainwindow.h"
+#include "levelmenu.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'mainwindow.h' doesn't include <QObject>."
+#error "The header file 'levelmenu.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -18,29 +18,29 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_MainWindow_t {
+struct qt_meta_stringdata_levelMenu_t {
     QByteArrayData data[5];
-    char stringdata[56];
+    char stringdata[74];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_MainWindow_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_levelMenu_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
+static const qt_meta_stringdata_levelMenu_t qt_meta_stringdata_levelMenu = {
     {
-QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 13),
-QT_MOC_LITERAL(2, 25, 0),
-QT_MOC_LITERAL(3, 26, 11),
-QT_MOC_LITERAL(4, 38, 17)
+QT_MOC_LITERAL(0, 0, 9),
+QT_MOC_LITERAL(1, 10, 17),
+QT_MOC_LITERAL(2, 28, 0),
+QT_MOC_LITERAL(3, 29, 19),
+QT_MOC_LITERAL(4, 49, 24)
     },
-    "MainWindow\0createButtons\0\0buttonClick\0"
-    "menuButtonClicked"
+    "levelMenu\0backButtonClicked\0\0"
+    "secondButtonClicked\0simpleLevelButtonClicked"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_MainWindow[] = {
+static const uint qt_meta_data_levelMenu[] = {
 
  // content:
        7,       // revision
@@ -66,40 +66,40 @@ static const uint qt_meta_data_MainWindow[] = {
        0        // eod
 };
 
-void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void levelMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        MainWindow *_t = static_cast<MainWindow *>(_o);
+        levelMenu *_t = static_cast<levelMenu *>(_o);
         switch (_id) {
-        case 0: _t->createButtons(); break;
-        case 1: _t->buttonClick(); break;
-        case 2: _t->menuButtonClicked(); break;
+        case 0: _t->backButtonClicked(); break;
+        case 1: _t->secondButtonClicked(); break;
+        case 2: _t->simpleLevelButtonClicked(); break;
         default: ;
         }
     }
     Q_UNUSED(_a);
 }
 
-const QMetaObject MainWindow::staticMetaObject = {
-    { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
-      qt_meta_data_MainWindow,  qt_static_metacall, 0, 0}
+const QMetaObject levelMenu::staticMetaObject = {
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_levelMenu.data,
+      qt_meta_data_levelMenu,  qt_static_metacall, 0, 0}
 };
 
 
-const QMetaObject *MainWindow::metaObject() const
+const QMetaObject *levelMenu::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MainWindow::qt_metacast(const char *_clname)
+void *levelMenu::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata))
-        return static_cast<void*>(const_cast< MainWindow*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_levelMenu.stringdata))
+        return static_cast<void*>(const_cast< levelMenu*>(this));
     return QMainWindow::qt_metacast(_clname);
 }
 
-int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int levelMenu::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)

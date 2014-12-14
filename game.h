@@ -24,6 +24,7 @@ public:
     void swapPieces(QPair<int, int> first, QPair<int, int> second);
     QString scoreAtTheMoment();
     void getNullScore();
+    void mixButtons();
 
 private:
     ///Affect after removal lines

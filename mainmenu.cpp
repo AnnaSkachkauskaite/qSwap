@@ -7,10 +7,10 @@ MainMenu::MainMenu(QWidget *parent) :
     ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
-    playFontMusic();
+    //playFontMusic();
     connect(ui->playButton,&QPushButton::clicked, this, &MainMenu::playButtonClicked);
     connect(ui->optionsButton,&QPushButton::clicked, this, &MainMenu::optionsButtonClicked);
-    connect(gameField, SIGNAL(endGame()), this, SLOT(showMenu()));
+    //connect(levelMenuEx, SIGNAL(backToMenu()), this, SLOT(showMenu()));
     ui->infoButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->optionsButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->playButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -20,21 +20,26 @@ MainMenu::MainMenu(QWidget *parent) :
     connect(rulesField, SIGNAL(backToMenu()), this, SLOT(showMenu()));
     connect(ui->rulesButton, &QPushButton::clicked, this, &MainMenu::rulesButtonClicked);
     connect(ui->infoButton, &QPushButton::clicked, this, &MainMenu::infoButtonClicked);
+    //connect(gameField, SIGNAL(endGame()), this, SLOT(showMenu()));
 }
 
 
 MainMenu::~MainMenu()
 {
     delete ui;
-    delete gameField;
-    delete optionsWindow;
 }
 
 void MainMenu::playButtonClicked()
 {
+    levelMenuEx = new levelMenu();
+    levelMenuEx->show();
+}
+
+/*void MainMenu::playButtonClicked()
+{
     gameField = new MainWindow();
     gameField->show();
-}
+}*/
 
 void MainMenu::optionsButtonClicked()
 {
@@ -66,11 +71,11 @@ void MainMenu::paintEvent(QPaintEvent *)
     painter.drawImage(0, 0, fontImage.scaled(this->size()));
 }
 
-void MainMenu::playFontMusic()
+/*void MainMenu::playFontMusic()
 {
 player = new QMediaPlayer;
 player->setMedia(QUrl::fromLocalFile("Images/backgroundmusic.mp3"));
 player->setVolume(100);
 player->play();
-}
+}*/
 

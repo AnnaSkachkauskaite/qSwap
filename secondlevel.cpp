@@ -1,39 +1,34 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "secondlevel.h"
+#include "ui_secondlevel.h"
 #include <cmath>
 #include <QPainter>
-#include <QMessageBox>
 #include <QTimer>
+#include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) :
+SecondLevel::SecondLevel(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    sizeG(6),
-    game()
-
+    ui(new Ui::SecondLevel),
+  sizeG(6),
+  game()
 {
     ui->setupUi(this);
     firstPiece = nullptr;
-    db = new DataBase;
     results = db->loadDb();
-    //ui->->setText(results->value(levelName));
-    ui->lineEdit_2->setText(results->value(levelName));
-    ui->lineEdit->setText("0");
+    ui->bestScore->setText(results->value(levelName));
+    ui->score->setText("0");
     game.getNullScore();
-    //ui->centralWidget->setStyleSheet("background-color:rgb(0,0,0);");
-    ui->BackButton->setStyleSheet("background-color:white;");
-    connect(ui->BackButton, &QPushButton::clicked, this, &MainWindow::menuButtonClicked);
-    ui->label_4->setText(QString::number(moves));
+    ui->backButton->setStyleSheet("background-color:white;");
+    connect(ui->backButton, &QPushButton::clicked, this, &SecondLevel::menuButtonClicked);
     createButtons();
 }
 
-MainWindow::~MainWindow()
+SecondLevel::~SecondLevel()
 {
     delete ui;
     delete db;
 }
 
-void MainWindow::createButtons()
+void SecondLevel::createButtons()
 {
     for (int i = 0; i < sizeG; ++i)
         for (int j = 0; j < sizeG; ++j)
@@ -41,12 +36,12 @@ void MainWindow::createButtons()
             QPushButton *button = new QPushButton;
             button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
             button->setText(" ");
-            ui->gridLayout->addWidget(button, i, j);
+            ui->gridLayout_3->addWidget(button, i, j);
             buttonsPosition[button] = qMakePair(i, j);
-            ui->gridLayout->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i, j)));
+            ui->gridLayout_3->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i, j)));
             //button->setText(QString("%1").arg(game.getPiece(i, j)));
             button->setText("$");
-            connect(button, &QPushButton::clicked, this, &MainWindow::buttonClick);
+            connect(button, &QPushButton::clicked, this, &SecondLevel::buttonClick);
         }
     bool temp = game.lookForMatches();
     while(temp){
@@ -55,14 +50,14 @@ void MainWindow::createButtons()
         temp = game.lookForMatches();
     }
     game.getNullScore();
-    //ui->lineEdit->setText(game.scoreAtTheMoment());
     QMessageBox msgBox;
-    msgBox.setText("You need to score 3000 points in 5 moves!");
+    msgBox.setText("Play until you run out of all move possibilieties!");
     msgBox.setIcon(QMessageBox::Information);
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
 }
-void MainWindow::buttonClick()
+
+void SecondLevel::buttonClick()
 {
     QPushButton *button = dynamic_cast<QPushButton *> (sender());
     int i = buttonsPosition[button].first;
@@ -104,73 +99,32 @@ void MainWindow::buttonClick()
             firstPiece->setStyleSheet("background-color:rgb(238,44,44);");
         }
     }
-
 }
 
-void MainWindow::menuButtonClicked()
+void SecondLevel::menuButtonClicked()
 {
-    ui->lineEdit->setText("0");
+    ui->score->setText("0");
     game.getNullScore();
     close();
     //emit endGame();
 }
 
-void MainWindow::endGameNoMatches()
+void SecondLevel::endGameNoMatches()
 {
     if (!game.isMovePossible())
     {
-        if (moves != 0)
-        {
-            game.mixButtons();
-            RefreshButtons();
-        }
-        /*if (game.scoreAtTheMoment().toInt() >= maxScore)
-        {QMessageBox goodNews;
-            goodNews.setText
-            ("YOU ARE WINNER!!");
-            goodNews.setStandardButtons(QMessageBox::Ok);
-            goodNews.setStyleSheet("background-color:rgb(0, 255, 0)");
-            goodNews.exec();
-            menuButtonClicked();
-        }
-        else
-        {
-            QMessageBox badNews;
-            badNews.setText("LOSER!!");
-            badNews.setStandardButtons(QMessageBox::Ok);
-            badNews.setStyleSheet("background-color:rgb(255, 6, 60)");
-            badNews.exec();
-            menuButtonClicked();
-        }*/
-    }
-    if (moves == 0)
-    {
-        if (game.scoreAtTheMoment().toInt() >= maxScore)
-        {
             QMessageBox goodNews;
-            goodNews.setText("YOU ARE WINNER!!");
+            goodNews.setText
+            ("No Moves Left!! Game Over!!");
             goodNews.setStandardButtons(QMessageBox::Ok);
             goodNews.setStyleSheet("background-color:rgb(0, 255, 0)");
             goodNews.exec();
-            moves = 5;
             resultToSave();
             menuButtonClicked();
-        }
-        else
-        {
-            QMessageBox badNews;
-            badNews.setText("LOSER!!");
-            badNews.setStandardButtons(QMessageBox::Ok);
-            badNews.setStyleSheet("background-color:rgb(255, 6, 60)");
-            badNews.exec();
-            moves = 5;
-            resultToSave();
-            menuButtonClicked();
-        }
     }
 }
 
-void MainWindow::makeSwap(QPushButton *first, QPushButton *second)
+void SecondLevel::makeSwap(QPushButton *first, QPushButton *second)
 {
     swapPiecesAndButtons(first, second);
     bool temp = game.lookForMatches();
@@ -185,15 +139,13 @@ void MainWindow::makeSwap(QPushButton *first, QPushButton *second)
             game.findAndRemoveMatches();
             RefreshButtons();
             temp = game.lookForMatches();
-            ui->lineEdit->setText(game.scoreAtTheMoment());
+            ui->score->setText(game.scoreAtTheMoment());
         }
-        moves--;
-        ui->label_4->setText(QString::number(moves));
         endGameNoMatches();
-    }   
+    }
 }
 
-void MainWindow::swapPiecesAndButtons(QPushButton *first, QPushButton *second)
+void SecondLevel::swapPiecesAndButtons(QPushButton *first, QPushButton *second)
 {
     QString tmp;
     tmp = first->text();
@@ -202,18 +154,18 @@ void MainWindow::swapPiecesAndButtons(QPushButton *first, QPushButton *second)
     game.swapPieces(buttonsPosition[first], buttonsPosition[second]);
 }
 
-void MainWindow::RefreshButtons()
+void SecondLevel::RefreshButtons()
 {
     for (int i = 0; i < sizeG; i++)
     {
         for (int j = 0; j < sizeG; j++)
         {
-            ui->gridLayout->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i,j)));
+            ui->gridLayout_3->itemAtPosition(i, j)->widget()->setStyleSheet(colorByType(game.getPiece(i,j)));
         }
     }
 }
 
-const char* MainWindow::colorByType(int type)
+const char* SecondLevel::colorByType(int type)
 {
     switch (type) {
     case 0:
@@ -240,7 +192,7 @@ const char* MainWindow::colorByType(int type)
     }
 }
 
-void MainWindow::resultToSave()
+void SecondLevel::resultToSave()
 {
     if (!results->contains(levelName))
     {
@@ -259,7 +211,7 @@ void MainWindow::resultToSave()
     }
 }
 
-void MainWindow::paintEvent(QPaintEvent *)
+void SecondLevel::paintEvent(QPaintEvent *)
 {
     QImage fontImage(":/new/prefix1/Images/dirtymoney.jpg");
     QPainter painter(this);

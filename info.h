@@ -1,5 +1,4 @@
-#ifndef INFO_H
-#define INFO_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPainter>
@@ -27,4 +26,4 @@ private slots:
     void backButtonClicked();
 };
 
-#endif // INFO_H
+

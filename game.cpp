@@ -109,6 +109,22 @@ void Game::getNullScore()
     score = 0;
 }
 
+void Game::mixButtons()
+{
+    while (!isMovePossible())
+    {
+        for (int i = 0; i < 25; i++)
+        {
+            int fp = qrand() % sizeG;
+            int sp = qrand() % sizeG;
+            int fp2 = qrand() % sizeG;
+            int sp2 = qrand() % sizeG;
+
+            swapPieces(qMakePair(fp, sp), qMakePair(fp2, sp2));
+        }
+    }
+}
+
 
 void Game::dropPieces(int col, int row)
 {

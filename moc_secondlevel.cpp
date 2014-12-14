@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'mainwindow.h'
+** Meta object code from reading C++ file 'secondlevel.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "mainwindow.h"
+#include "secondlevel.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'mainwindow.h' doesn't include <QObject>."
+#error "The header file 'secondlevel.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -18,29 +18,29 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_MainWindow_t {
+struct qt_meta_stringdata_SecondLevel_t {
     QByteArrayData data[5];
-    char stringdata[56];
+    char stringdata[57];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_MainWindow_t, stringdata) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_SecondLevel_t, stringdata) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
+static const qt_meta_stringdata_SecondLevel_t qt_meta_stringdata_SecondLevel = {
     {
-QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 13),
-QT_MOC_LITERAL(2, 25, 0),
-QT_MOC_LITERAL(3, 26, 11),
-QT_MOC_LITERAL(4, 38, 17)
+QT_MOC_LITERAL(0, 0, 11),
+QT_MOC_LITERAL(1, 12, 13),
+QT_MOC_LITERAL(2, 26, 0),
+QT_MOC_LITERAL(3, 27, 11),
+QT_MOC_LITERAL(4, 39, 17)
     },
-    "MainWindow\0createButtons\0\0buttonClick\0"
+    "SecondLevel\0createButtons\0\0buttonClick\0"
     "menuButtonClicked"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_MainWindow[] = {
+static const uint qt_meta_data_SecondLevel[] = {
 
  // content:
        7,       // revision
@@ -66,10 +66,10 @@ static const uint qt_meta_data_MainWindow[] = {
        0        // eod
 };
 
-void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void SecondLevel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        MainWindow *_t = static_cast<MainWindow *>(_o);
+        SecondLevel *_t = static_cast<SecondLevel *>(_o);
         switch (_id) {
         case 0: _t->createButtons(); break;
         case 1: _t->buttonClick(); break;
@@ -80,26 +80,26 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     Q_UNUSED(_a);
 }
 
-const QMetaObject MainWindow::staticMetaObject = {
-    { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
-      qt_meta_data_MainWindow,  qt_static_metacall, 0, 0}
+const QMetaObject SecondLevel::staticMetaObject = {
+    { &QMainWindow::staticMetaObject, qt_meta_stringdata_SecondLevel.data,
+      qt_meta_data_SecondLevel,  qt_static_metacall, 0, 0}
 };
 
 
-const QMetaObject *MainWindow::metaObject() const
+const QMetaObject *SecondLevel::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MainWindow::qt_metacast(const char *_clname)
+void *SecondLevel::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata))
-        return static_cast<void*>(const_cast< MainWindow*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_SecondLevel.stringdata))
+        return static_cast<void*>(const_cast< SecondLevel*>(this));
     return QMainWindow::qt_metacast(_clname);
 }
 
-int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int SecondLevel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)

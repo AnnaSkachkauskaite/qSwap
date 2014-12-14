@@ -1,5 +1,4 @@
-#ifndef OPTIONSMENU_H
-#define OPTIONSMENU_H
+#pragma once
 
 #include <QMainWindow>
 #include <QtMultimedia/QMediaPlayer>
@@ -32,4 +31,4 @@ private slots:
     void soundOnOffClicked();
 };
 
-#endif // OPTIONSMENU_H
+

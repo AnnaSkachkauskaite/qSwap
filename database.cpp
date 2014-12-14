@@ -6,6 +6,11 @@ DataBase::DataBase()
 {
 }
 
+DataBase::~DataBase()
+{
+
+}
+
 /*QString DataBase::getResult(QString name)
 {
 
@@ -73,7 +78,7 @@ QPair<QString, QString> DataBase::getOneScore(QDomNode docElem)
         QDomElement element = node.toElement();
         if (element.tagName() == "level")
             result.first = element.text();
-        if (element.tagName() == "keystring")
+        if (element.tagName() == "score")
             result.second = element.text();
         node = node.nextSibling();
     }

@@ -12,18 +12,17 @@
 
 using namespace std;
 
-
 namespace Ui {
-class MainWindow;
+class SecondLevel;
 }
 
-class MainWindow : public QMainWindow
+class SecondLevel : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit SecondLevel(QWidget *parent = 0);
+    ~SecondLevel();
     void makeSwap(QPushButton *, QPushButton *);
     void swapPiecesAndButtons(QPushButton *first, QPushButton *second);
     void paintEvent(QPaintEvent *);
@@ -36,11 +35,8 @@ private slots:
     ///Back to menu
     void menuButtonClicked();
 
-signals:
-    //void endGame();
-
 private:
-    Ui::MainWindow *ui;
+    Ui::SecondLevel *ui;
     void endGameNoMatches();
     QMap <QPushButton *, QPair<int, int> > buttonsPosition;
     int sizeG;
@@ -52,10 +48,9 @@ private:
     void RefreshButtons();
     ///For color buttons
     const char* colorByType(int type);
-    int maxScore = 3000;
-    int moves = 5;
     QMap<QString, QString>* results;
     DataBase *db;
-    QString levelName = "simpleLevel";
+    QString levelName = "secondLevel";
     void resultToSave();
 };
+

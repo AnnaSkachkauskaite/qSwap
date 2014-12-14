@@ -1,5 +1,4 @@
-#ifndef RULES_H
-#define RULES_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPainter>
@@ -27,4 +26,3 @@ private slots:
     void backButtonClicked();
 };
 
-#endif // RULES_H
