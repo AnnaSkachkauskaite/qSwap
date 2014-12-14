@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "game.h"
+#include "database.h"
 //#include "menu.h"
 
 using namespace std;
@@ -40,7 +41,7 @@ signals:
     void endGame();
 
 private:
-    void appropriateGame();
+    void endGameNoMatches();
     Ui::MainWindow *ui;
     QMap <QPushButton *, QPair<int, int> > buttonsPosition;
     int sizeG;
@@ -52,4 +53,10 @@ private:
     void RefreshButtons();
     ///For color buttons
     const char* colorByType(int type);
+    int maxScore = 3000;
+    int moves = 5;
+    QMap<QString, QString>* results;
+    DataBase db;
+    QString levelName = "simpleLevel";
+    void resultToSave();
 };

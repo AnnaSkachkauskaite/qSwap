@@ -22,12 +22,10 @@ public:
     bool isMovePossible();
     ///Change pieces
     void swapPieces(QPair<int, int> first, QPair<int, int> second);
-    void checkForEnd();
     QString scoreAtTheMoment();
     void getNullScore();
 
 private:
-    void endGameNoMatches();
     ///Affect after removal lines
     void dropPieces(int col, int row);
     void addPiece(int col, int row);

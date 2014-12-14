@@ -19,6 +19,7 @@ MainMenu::MainMenu(QWidget *parent) :
     connect(optionsWindow, SIGNAL(backToMenu()), this, SLOT(showMenu()));
     connect(rulesField, SIGNAL(backToMenu()), this, SLOT(showMenu()));
     connect(ui->rulesButton, &QPushButton::clicked, this, &MainMenu::rulesButtonClicked);
+    connect(ui->infoButton, &QPushButton::clicked, this, &MainMenu::infoButtonClicked);
 }
 
 
@@ -45,6 +46,12 @@ void MainMenu::rulesButtonClicked()
 {
     rulesField = new Rules();
     rulesField->show();
+}
+
+void MainMenu::infoButtonClicked()
+{
+    infoField = new Info;
+    infoField->show();
 }
 
 void MainMenu::showMenu()

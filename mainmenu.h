@@ -7,6 +7,7 @@
 #include <QtMultimedia/QMediaPlayer>
 #include <QDesktopWidget>
 #include "rules.h"
+#include "info.h"
 
 namespace Ui {
 class MainMenu;
@@ -30,6 +31,7 @@ private slots:
     void optionsButtonClicked();
     ///Show rules screen
     void rulesButtonClicked();
+    void infoButtonClicked();
 
 public slots:
     void showMenu();
@@ -39,6 +41,7 @@ private:
     MainWindow *gameField;
     OptionsMenu *optionsWindow;
     Rules *rulesField;
+    Info *infoField;
 };
 
 #endif // MAINMENU_H

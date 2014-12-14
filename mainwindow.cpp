@@ -2,22 +2,26 @@
 #include "ui_mainwindow.h"
 #include <cmath>
 #include <QPainter>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    sizeG(8),
+    sizeG(6),
     game()
 
 {
     ui->setupUi(this);
     firstPiece = nullptr;
+    results = db.loadDb();
+    ui->lineEdit_2->setText(results->key(levelName));
     ui->lineEdit->setText("0");
     game.getNullScore();
     //ui->centralWidget->setStyleSheet("background-color:rgb(0,0,0);");
     ui->BackButton->setStyleSheet("background-color:white;");
     connect(ui->BackButton, &QPushButton::clicked, this, &MainWindow::menuButtonClicked);
     createButtons();
+
 }
 
 MainWindow::~MainWindow()
@@ -101,9 +105,54 @@ void MainWindow::menuButtonClicked()
     emit endGame();
 }
 
-void MainWindow::appropriateGame()
+void MainWindow::endGameNoMatches()
 {
-
+    /*if (!game.isMovePossible())
+    {
+        if (game.scoreAtTheMoment().toInt() >= maxScore)
+        {
+            QMessageBox goodNews;
+            goodNews.setText("YOU ARE WINNER!!");
+            goodNews.setStandardButtons(QMessageBox::Ok);
+            goodNews.setStyleSheet("background-color:rgb(0, 255, 0)");
+            goodNews.exec();
+            menuButtonClicked();
+        }
+        else
+        {
+            QMessageBox badNews;
+            badNews.setText("LOSER!!");
+            badNews.setStandardButtons(QMessageBox::Ok);
+            badNews.setStyleSheet("background-color:rgb(255, 6, 60)");
+            badNews.exec();
+            menuButtonClicked();
+        }
+    }*/
+    if (moves == 0)
+    {
+        if (game.scoreAtTheMoment().toInt() >= maxScore)
+        {
+            QMessageBox goodNews;
+            goodNews.setText("YOU ARE WINNER!!");
+            goodNews.setStandardButtons(QMessageBox::Ok);
+            goodNews.setStyleSheet("background-color:rgb(0, 255, 0)");
+            goodNews.exec();
+            moves = 5;
+            resultToSave();
+            menuButtonClicked();
+        }
+        else
+        {
+            QMessageBox badNews;
+            badNews.setText("LOSER!!");
+            badNews.setStandardButtons(QMessageBox::Ok);
+            badNews.setStyleSheet("background-color:rgb(255, 6, 60)");
+            badNews.exec();
+            moves = 5;
+            resultToSave();
+            menuButtonClicked();
+        }
+    }
 }
 
 void MainWindow::makeSwap(QPushButton *first, QPushButton *second)
@@ -123,7 +172,9 @@ void MainWindow::makeSwap(QPushButton *first, QPushButton *second)
             temp = game.lookForMatches();
             ui->lineEdit->setText(game.scoreAtTheMoment());
         }
-    }
+        moves--;
+        endGameNoMatches();
+    }   
 }
 
 void MainWindow::swapPiecesAndButtons(QPushButton *first, QPushButton *second)
@@ -170,6 +221,25 @@ const char* MainWindow::colorByType(int type)
     default:
         return "background-color:rgb(0,0,0);";
         break;
+    }
+}
+
+void MainWindow::resultToSave()
+{
+    if (!results->contains(levelName))
+    {
+        results->insert(levelName, game.scoreAtTheMoment());
+        db.makeDb(results);
+    }
+    else
+    {
+        if (results->key(levelName).toInt()< game.scoreAtTheMoment().toInt())
+        {
+            //results->value(levelName) = game.scoreAtTheMoment();
+            results->remove(levelName);
+            results->insert(levelName, game.scoreAtTheMoment());
+            db.makeDb(results);
+        }
     }
 }
 
